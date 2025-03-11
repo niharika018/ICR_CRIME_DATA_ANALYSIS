@@ -8,32 +8,38 @@ def parse_cell_id(cell_id):
     
     return x, y
 
-def doubleheight_to_axial(x,y):
-    
-    q = x
-    
-    r = (y-x)/2
-    
-    return (q,r)
+def double_height_to_hexagdly(x, y):
 
-def axialdf_to_array(df):
-    
-    min_q, max_q = df["q"].min(), df["q"].max()
-    min_r, max_r = df["r"].min(), df["r"].max()
-    
-    rows = max_r - min_r + 1  
-    cols = max_q - min_q + 1  
-    
-    crime_array = np.full((rows, cols), fill_value = 0, dtype = int)
-    
-    for _, row in df.iterrows():
-        q, r, crime_count = int(row["q"]), int(row["r"]), int(row["crime_count"])
-    
+    # Rotate 90° counterclockwise
+    col = x  # x-coordinates map to column indices
+    row = y // 2  # Every two y-values correspond to one row
 
-        array_row = r - min_r  
-        array_col = q - min_q  
+    # Shift odd columns upwards by 1 unit
+    if col % 2 != 0:
+        row += 1
 
+    return row, col
 
-        crime_array[array_row, array_col] = crime_count
+def doubleheightdf_to_array(df, x_col='x', y_col='y', value_col='crime_count', default_value=0):
     
-    return crime_array
+    # Convert each double-height coordinate to odd-q offset coordinates.
+    df['row'], df['col'] = zip(*df.apply(lambda row: double_height_to_hexagdly(row[x_col], row[y_col]), axis=1))
+    
+    # Shift coordinates so that the minimum row and col become 0.
+    min_row = df['row'].min()
+    min_col = df['col'].min()
+    df['row'] = df['row'] - min_row
+    df['col'] = df['col'] - min_col
+    
+    # Determine grid dimensions.
+    max_row = df['row'].max()
+    max_col = df['col'].max()
+    
+    # Initialize the grid with the default value.
+    grid = [[default_value for _ in range(max_col + 1)] for _ in range(max_row + 1)]
+    
+    # Populate the grid with the value from each DataFrame row.
+    for _, r in df.iterrows():
+        grid[int(r['row'])][int(r['col'])] = r[value_col]
+    
+    return grid
