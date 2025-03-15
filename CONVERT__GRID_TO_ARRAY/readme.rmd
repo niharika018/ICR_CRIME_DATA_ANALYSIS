@@ -1,3 +1,0 @@
-covertgeojsontoarray takes in the geojson dataframe from creating the grid, and converts it into an array so it can be used with HexCNN. 
-
-converttoarray stores the functions needed.
