@@ -30,6 +30,20 @@ Requires: .csv where each crime is a row with assigned cell_ids
 
 TFTdataprep.py prepares the data for use and prediction in TFT base model.
 
-TFT_model.py trains a TFT base model and saves the parameters
+TFT_model.py trains a TFT base model and saves the parameters.
 
 validate_tft_model.py takes in a test data set and the trained TFT base model, makes and saves predictions, and calculatse RMSE and MAE.
+
+## PLOTS
+
+Requires: .geojson corresponding to hexagonal grid, .csv file containing the predictions on the test dataset in the form date, forecast_day (1-7), predicted_crimes, actual_crimes, absolute_error
+
+MAEgridheatmap.py creates a heatmap of absolute error on a hexagonal grid.
+
+crimesperdayplot.py creates a time series plot of total crimes predicted per day over a predefined time period.
+
+residualplot.py creates a histogram of residuals for the test data, gives skew and standard deviation, and a line that represents the mean bias.
+
+
+
+
