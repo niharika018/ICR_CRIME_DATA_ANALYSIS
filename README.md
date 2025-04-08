@@ -22,4 +22,14 @@ Requires: train, validation and test tensors of crime data with heagonal grid re
 
 HEXCNN_network.py contains a function to create pairs of past data and forecast data, defines the base model, and trains the model when run.
 
-validate_conv_model.py takes the model produced by HEXCNN_network.py, predicts values for the validation set and calculates MSE. 
+validate_conv_model.py takes the model produced by HEXCNN_network.py, predicts values for the validation set and calculates RMSE and MAE. 
+
+## TFT_BASE_MODEL
+
+Requires: .csv where each crime is a row with assigned cell_ids
+
+TFTdataprep.py prepares the data for use and prediction in TFT base model.
+
+TFT_model.py trains a TFT base model and saves the parameters
+
+validate_tft_model.py takes in a test data set and the trained TFT base model, makes and saves predictions, and calculatse RMSE and MAE.
