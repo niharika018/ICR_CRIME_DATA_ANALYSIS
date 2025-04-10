@@ -34,6 +34,16 @@ TFT_model.py trains a TFT base model and saves the parameters.
 
 validate_tft_model.py takes in a test data set and the trained TFT base model, makes and saves predictions, and calculatse RMSE and MAE.
 
+## Other Models Used
+In addition to our primary predictive models, we explored several complementary forecasting techniques to strengthen the robustness of our crime prediction analysis:
+
+ARIMA (AutoRegressive Integrated Moving Average):
+A univariate time series model used to forecast daily crime trends based on past occurrences. Applied per hexagonal region to capture temporal dependencies in localized crime patterns.
+
+Local Moran’s I (Spatial Autocorrelation Analysis):
+A spatial statistical method used to evaluate clustering of prediction errors (residuals). Helped identify regions where the model systematically over- or under-performed, revealing spatial biases in predictions.
+These models were used alongside Random Forest and other machine learning methods to provide both predictive accuracy and spatial interpretability.
+
 ## PLOTS
 
 Requires: .geojson corresponding to hexagonal grid, .csv file containing the predictions on the test dataset in the form date, forecast_day (1-7), predicted_crimes, actual_crimes, absolute_error
