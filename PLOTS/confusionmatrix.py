@@ -3,14 +3,14 @@ import seaborn as sns
 import numpy as np
 
 #confusion matrix values
-TN = 104353
-FN = 8526
-FP = 15876
-TP = 13925
+TN = 109989
+FN = 11966
+FP = 10932
+TP = 10613
 conf_matrix = np.array([[TN, FP],
                         [FN, TP]])
 
-#onvert to array
+#convert to array
 labels = np.array([[TN, FP],
                    [FN, TP]])
 

@@ -16,7 +16,7 @@ cax = fig.add_subplot(gs[3,:])  # Colorbar axis
 
 #load data
 grid = gpd.read_file('grid.geojson')
-predictions = pd.read_csv('hextest_predictions.csv')
+predictions = pd.read_csv('hexlstm_predictions_test.csv')
 predictions['period_start'] = pd.to_datetime(predictions['period_start'])
 
 #get three chosen days

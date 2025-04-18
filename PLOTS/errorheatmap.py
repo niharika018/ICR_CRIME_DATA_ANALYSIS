@@ -5,7 +5,7 @@ from matplotlib.colors import LinearSegmentedColormap
 import pandas as pd
 
 grid_file = "grid.geojson"  # .geojson
-prediction_file = "hextest_predictions.csv"  # .csv
+prediction_file = "hexlstm_predictions_test.csv"  # .csv
 
 #load data
 hex_grid = gpd.read_file(grid_file) 
@@ -46,7 +46,7 @@ hex_grid.plot(
     }
 )
 
-#other customizations
+#other cutomizations
 ax.set_title("Crime Classification Error Proportion by Hexagonal Grid Cell", fontsize=16)
 ax.set_axis_off()
 plt.tight_layout()
